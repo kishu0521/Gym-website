@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Profile - Heaven's Arena</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #111;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #000;
+      color: red;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+    }
+    header .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+    }
+    .profile-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: #222;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+    }
+    .profile-container h2 {
+      color: red;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .profile-detail {
+      margin: 15px 0;
+      font-size: 1.1rem;
+    }
+    .profile-detail span {
+      font-weight: bold;
+      color: #ccc;
+    }
+    .profile-pic {
+      display: block;
+      margin: 20px auto;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 3px solid red;
+      object-fit: cover;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #aaa;
+      background-color: #000;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Heaven's Arena</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="logout.html" onclick="logout()">Logout</a>
+    </nav>
+  </header>
+
+  <div class="profile-container">
+    <h2>User Profile</h2>
+    <img id="profilePic" class="profile-pic" src="" alt="Profile Picture" />
+    <div class="profile-detail"><span>Name:</span> <span id="name"></span></div>
+    <div class="profile-detail"><span>Age:</span> <span id="age"></span></div>
+    <div class="profile-detail"><span>Phone:</span> <span id="phone"></span></div>
+    <div class="profile-detail"><span>Height:</span> <span id="height"></span> cm</div>
+    <div class="profile-detail"><span>Weight:</span> <span id="weight"></span> kg</div>
+    <div class="profile-detail"><span>Occupation:</span> <span id="occupation"></span></div>
+    <div class="profile-detail"><span>Address:</span> <span id="address"></span></div>
+  </div>
+
+  <footer>
+    &copy; 2025 Heaven's Arena. All Rights Reserved.
+  </footer>
+
+  <script>
+    const userId = localStorage.getItem("loggedInUserId");
+
+    if (!userId) {
+      alert("You are not logged in.");
+      window.location.href = "login.html";
+    }
+
+    fetch(`http://localhost:5000/profile/${userId}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Server error");
+        return res.json();
+      })
+      .then((data) => {
+        document.getElementById("name").textContent = data.name;
+        document.getElementById("age").textContent = data.age;
+        document.getElementById("phone").textContent = data.phone;
+        document.getElementById("height").textContent = data.height;
+        document.getElementById("weight").textContent = data.weight;
+        document.getElementById("occupation").textContent = data.occupation;
+        document.getElementById("address").textContent = data.address;
+
+        if (data.profilePicture) {
+          document.getElementById("profilePic").src = data.profilePicture;
+        } else {
+          document.getElementById("profilePic").src = "default-avatar.png"; // optional fallback
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to fetch profile:", err);
+        alert("Error loading profile.");
+      });
+
+    function logout() {
+      localStorage.removeItem("loggedInUserId");
+      alert("Logged out!");
+    }
+  </script>
+</body>
+</html>

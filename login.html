@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Heaven's Arena</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">Heaven's Arena</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="register.html">Register</a>
+    </nav>
+  </header>
+
+  <section class="form-section">
+    <h2>Login</h2>
+    <form id="loginForm" class="form">
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <button type="submit" class="btn">Login</button>
+    </form>
+    <p class="form-text">Don't have an account? <a href="register.html">Register here</a></p>
+  </section>
+
+  <footer>&copy; 2025 Heaven's Arena. All Rights Reserved.</footer>
+
+  <script>
+    const form = document.getElementById('loginForm');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = form.email.value;
+      const password = form.password.value;
+
+      try {
+        const res = await fetch('http://localhost:5000/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          localStorage.setItem('loggedInUserId', data.userId);
+          localStorage.setItem('loggedInEmail', email);
+          window.location.assign('dashboard.html');
+        } else {
+          alert("Login failed: " + data.message);
+        }
+
+      } catch (err) {
+        alert("Something went wrong. Please try again.");
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Trainers - Heaven's Arena</title>
+  <link rel="stylesheet" href="styles.css" /> <!-- link your CSS file -->
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: 'Arial', sans-serif;
+    }
+    header {
+      background-color: black;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      color: #ff3333;
+      font-size: 36px;
+    }
+    .trainer-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px 20px;
+      gap: 30px;
+    }
+    .trainer-card {
+      background-color: #1c1c1c;
+      border: 1px solid #ff3333;
+      border-radius: 10px;
+      width: 300px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .trainer-card:hover {
+      transform: scale(1.05);
+    }
+    .trainer-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .trainer-name {
+      margin-top: 15px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+    }
+    .trainer-specialty {
+      font-size: 16px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Meet Our Trainers</h1>
+  </header>
+
+  <section class="trainer-section">
+    <div class="trainer-card">
+      <img src="images/trainer1.jpg" alt="Trainer 1">
+      <div class="trainer-name">Alex Johnson</div>
+      <div class="trainer-specialty">Strength & Conditioning</div>
+    </div>
+    <div class="trainer-card">
+      <img src="images/trainer2.jpg" alt="Trainer 2">
+      <div class="trainer-name">Maria Lopez</div>
+      <div class="trainer-specialty">Yoga & Flexibility</div>
+    </div>
+    <div class="trainer-card">
+      <img src="images/trainer3.jpg" alt="Trainer 3">
+      <div class="trainer-name">David Singh</div>
+      <div class="trainer-specialty">Weight Loss & Nutrition</div>
+    </div>
+    <div class="trainer-card">
+      <img src="images/trainer4.jpg" alt="Trainer 4">
+      <div class="trainer-name">Sofia Ahmed</div>
+      <div class="trainer-specialty">Cardio & Crossfit</div>
+    </div>
+  </section>
+</body>
+</html>

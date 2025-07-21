@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Heaven's Arena</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background-color: #111;
+      color: white;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      flex: 1;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      flex: 2;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .nav-links a:hover {
+      color: #ff3333;
+    }
+
+    .auth-buttons {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .auth-buttons a {
+      text-decoration: none;
+      padding: 8px 14px;
+      background-color: #ff3333;
+      color: white;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .auth-buttons a:hover {
+      background-color: #cc0000;
+    }
+
+    .hero {
+      background: #000;
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .hero .btn {
+      background-color: #ff3333;
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      margin-top: 20px;
+      display: inline-block;
+    }
+
+    .hero .btn:hover {
+      background-color: #cc0000;
+    }
+
+    .gallery {
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .gallery h2 {
+      color: #111;
+    }
+
+    .images {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .images img {
+      width: 250px;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    footer {
+      text-align: center;
+      background-color: #111;
+      color: white;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Heaven's Arena</div>
+    
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="program.html">Programs</a>
+      <a href="membership.html">Membership</a>
+      <a href="Trainers.html">Trainers</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="auth-buttons">
+      <a href="register.html">Register</a>
+      <a href="login.html">Login</a>
+    </div>
+  </header>
+
+  <section class="hero" id="about">
+    <h1>Welcome to Heaven's Arena – A Unisex Gym</h1>
+    <p>Elite coaches. Professional care. Transform your body and mind.</p>
+    <a href="program.html#programs" class="btn">See Our Programs</a>
+  </section>
+
+  <section class="gallery">
+    <h2>Inside Our Gym</h2>
+    <div class="images">
+      <img src="images/gym1.jpg" alt="Gym Photo 1" />
+      <img src="images/gym2.jpg" alt="Gym Photo 2" />
+      <img src="images/gym3.jpg" alt="Gym Photo 3" />
+      <img src="images/gym4.jpg" alt="Gym Photo 4" />
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" style="background-color: #111; color: white; padding: 50px 20px;">
+    <div class="container">
+      <h2 style="text-align: center; color: #ff3333;">Contact Us</h2>
+      <p style="text-align: center;">We'd love to hear from you! Reach out with any questions.</p>
+      <div style="max-width: 600px; margin: 30px auto; text-align: center;">
+        <p><strong>🏢 Address:</strong> Heaven's Arena Gym, Fathegarh Road, Opp. Narad Hospital, Hoshiarpur 149001</p>
+        <p><strong>📞 Phone:</strong> 62397-56821, 75893-85581</p>
+        <p><strong>📧 Email:</strong> contact@heavensarena.com</p>
+        <p><strong>🕒 Open Hours:</strong> Mon-Sat: 6:00 AM – 10:00 PM | Sunday: Closed</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Heaven's Arena. All rights reserved.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - Heaven's Arena</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">Heaven's Arena</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+  </header>
+
+  <section class="form-section">
+    <h2>Complete Your Profile</h2>
+    <form id="profileForm" class="form" enctype="multipart/form-data">
+      <input type="text" name="name" placeholder="Full Name" required />
+      <input type="number" name="age" placeholder="Age" required />
+      <input type="text" name="phone" placeholder="Phone Number" required />
+      <input type="number" name="height" placeholder="Height (in cm)" required />
+      <input type="number" name="weight" placeholder="Weight (in kg)" required />
+      <input type="text" name="occupation" placeholder="Occupation" required />
+      <input type="text" name="address" placeholder="Address" required />
+      <label>Upload Profile Picture</label>
+      <input type="file" name="profilePicture" accept="image/*" />
+      <button type="submit" class="btn">Submit Profile</button>
+    </form>
+  </section>
+
+  <footer>&copy; 2025 Heaven's Arena. All Rights Reserved.</footer>
+
+  <script>
+    
+    const form = document.getElementById('profileForm');
+    const userId = localStorage.getItem('loggedInUserId');
+  // ✅ make sure it's set on login/register
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (!userId) {
+        alert('User not logged in');
+          window.location.href = 'login.html';
+          
+        return;
+      }
+
+      const profilePicFile = form.profilePicture.files[0];
+
+      const buildAndSendRequest = async (base64Image = '') => {
+        const body = {
+          name: form.name.value,
+          age: form.age.value,
+          phone: form.phone.value,
+          height: form.height.value,
+          weight: form.weight.value,
+          occupation: form.occupation.value,
+          address: form.address.value,
+          profilePicture: base64Image
+        };
+
+        try {
+          const res = await fetch(`http://localhost:5000/profile/${userId}`, {
+            method: 'POST', // Or PUT based on your backend
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+          });
+
+          const data = await res.json();
+
+          if (res.ok) {
+            alert('Profile updated successfully!');
+            window.location.href = 'profile.html'; // ✅ redirects to profile page
+          } else {
+            alert('Error: ' + (data.message || 'Unknown error'));
+          }
+        } catch (err) {
+          alert('Failed to connect to server.');
+          console.error(err);
+        }
+      };
+
+      if (profilePicFile) {
+        const reader = new FileReader();
+        reader.onload = function () {
+          buildAndSendRequest(reader.result);
+        };
+        reader.readAsDataURL(profilePicFile);
+      } else {
+        buildAndSendRequest();
+      }
+    });
+  </script>
+</body>
+</html>
